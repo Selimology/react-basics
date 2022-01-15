@@ -5,20 +5,23 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      isStillLoading: true,
+      unreadMessages: ["First message", "Second Message", "Third"],
     }
   }
 
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({ isStillLoading: false })
-    }, 1500)
-  }
   render() {
     return (
-      <div>
-        {this.state.isStillLoading === true ? <h1>Loading</h1> : <Conditional />}
-      </div>
+      {
+        /* If the first statement is true, it applies and checks the second statement
+        You may also use terniary operator*/
+      },
+      (
+        <div>
+          {this.state.unreadMessages.length > 0 && (
+            <h2>{this.state.unreadMessages.length} unread messages</h2>
+          )}
+        </div>
+      )
     )
   }
 }
