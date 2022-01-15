@@ -1,29 +1,40 @@
-import React from "react"
-import Conditional from "./Conditional"
+import React from "react";
+import TodoItem from "./TodoItem";
+import todosData from "./todosData";
 
 class App extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = {
-      unreadMessages: ["First message", "Second Message", "Third"],
-    }
+      todos: todosData,
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange(id) {
+    this.setState((prevState) => {
+      const updatedTodos = prevState.todos.map((todo) => {
+        if (todo.id === id) {
+          return {
+            ...todo,
+            completed: !todo.completed,
+          };
+        }
+        return todo;
+      });
+      return {
+        todos: updatedTodos,
+      };
+    });
   }
 
   render() {
-    return (
-      {
-        /* If the first statement is true, it applies and checks the second statement
-        You may also use terniary operator*/
-      },
-      (
-        <div>
-          {this.state.unreadMessages.length > 0 && (
-            <h2>{this.state.unreadMessages.length} unread messages</h2>
-          )}
-        </div>
-      )
-    )
+    const todoItems = this.state.todos.map((item) => (
+      <TodoItem key={item.id} item={item} handleChange={this.handleChange} />
+    ));
+
+    return <div>{todoItems}</div>;
   }
 }
 
-export default App
+export default App;
