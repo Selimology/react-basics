@@ -1,36 +1,43 @@
 import React from "react"
 
-// https://swapi.dev/api/people/1/
 class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      isLoading: false,
-      character: {},
+      firstName: "",
+      lastName: "",
     }
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  componentDidMount() {
-    this.setState({ isLoading: true })
-
-    fetch("https://swapi.dev/api/people/1/")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data)
-        this.setState({
-          character: data,
-          isLoading: false,
-        })
-      })
+  handleChange(event) {
+    const { name, value } = event.target
+    this.setState({
+      [name]: value,
+    })
   }
   render() {
-    const text = this.state.isLoading ? "loading..." : this.state.character.name
     return (
-      <div>
-        <p>{text}</p>
-      </div>
+      <form>
+        <input
+          type="text"
+          name="firstName"
+          value={this.state.firstName}
+          placeholder="First Name"
+          onChange={this.handleChange}
+        />
+        <input
+          type="text"
+          name="lastName"
+          value={this.state.lastName}
+          placeholder="Last Name"
+          onChange={this.handleChange}
+        />
+        <h1>
+          {this.state.firstName} {this.state.lastName}
+        </h1>
+      </form>
     )
   }
 }
-
 export default App
