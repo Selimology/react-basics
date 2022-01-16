@@ -12,6 +12,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.setState({ isLoading: true })
+
     fetch("https://swapi.dev/api/people/1/")
       .then((res) => res.json())
       .then((data) => {
