@@ -1,53 +1,32 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 function App() {
-  const [inputData, setInputData] = useState({ firstName: "", lastName: "" })
-  const [contactsData, setContactsData] = useState([])
+  const [count, setCount] = useState(0)
 
-  function handleChange(event) {
-    const { name, value } = event.target
-    setInputData((prevInputData) => {
-      return {
-        ...prevInputData,
-        [name]: value,
-      }
-    })
-  }
+  // function increment() {
+  //   setCount((prevCount) => {
+  //     return prevCount + 1
+  //   })
+  // }
+  // function decrement() {
+  //   setCount((prevCount) => {
+  //     return prevCount - 1
+  //   })
+  // }
 
-  function handleSubmit(event) {
-    event.preventDefault()
-    setContactsData((prevContacts) => {
-      return [...prevContacts, inputData]
-    })
-  }
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCount((prevCount) => prevCount + 1)
+    }, 1000)
+    return () => clearInterval(intervalId)
+  }, [])
 
-  const contacts = contactsData.map((contact) => {
-    return (
-      <h2 key={contact.firstName + contact.lastName}>
-        First Name: {contact.firstName} Last Name: {contact.lastName}{" "}
-      </h2>
-    )
-  })
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <input
-          placeholder="FirstName"
-          name="firstName"
-          value={inputData.firstName}
-          onChange={handleChange}
-        />
-        <input
-          placeholder="Last Name"
-          name="lastName"
-          value={inputData.lastName}
-          onChange={handleChange}
-        />
-
-        <button>add contact</button>
-      </form>
-      {contacts}
-    </>
+    <div>
+      <h1>{count}</h1>
+      {/* <button onClick={increment}>Increment</button>
+      <button onClick={decrement}>Decrement</button> */}
+    </div>
   )
 }
 export default App
