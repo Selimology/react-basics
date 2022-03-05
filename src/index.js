@@ -1,14 +1,15 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import App from "./App"
+import SearchMovies from "./SearchMovies"
 import "./index.css"
 
 function Main() {
   return (
-    <div>
-      <App />
+    <div className="container">
+      <h1 className="title">React Movie Search</h1>
+      <SearchMovies />
     </div>
   )
 }
 
-ReactDOM.render(<App />, document.getElementById("root"))
+ReactDOM.render(<Main />, document.getElementById("root"))
