@@ -1,13 +1,14 @@
 import React from "react"
-import Menu from "./Menu"
-import Favorite from "./Favorite"
+import DataFetcher from "./DataFetcher"
 
 function App() {
   return (
     <div>
-      <Menu />
-      <hr />
-      <Favorite />
+      <DataFetcher url="https://swapi.dev/api/people/1/">
+        {(data, loading) => {
+          return loading ? <h1>Loading...</h1> : <p>{JSON.stringify(data)}</p>
+        }}
+      </DataFetcher>
     </div>
   )
 }
