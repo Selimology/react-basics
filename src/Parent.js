@@ -1,17 +1,14 @@
-import React, { PureComponent } from "react"
+import React from "react"
 import Children from "./Children"
 
-class Parent extends PureComponent {
-  render() {
-    console.log("[][P][][] ")
-    return (
-      <div>
-        <p>I'm Parent Component</p>
-        <Children />
-        <Children />
-      </div>
-    )
-  }
-}
+export default React.memo(function Parent(props) {
+  return (
+    <div>
+      <p>I'm Parent Component</p>
+      <Children />
+      <Children />
+    </div>
+  )
+})
 
-export default Parent
+/* You may simply export default React.memo(Parent) */

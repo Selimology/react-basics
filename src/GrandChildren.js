@@ -1,14 +1,12 @@
-import React, { Component } from "react"
+import React from "react"
 
-class GrandChildren extends Component {
-  render() {
-    console.log("[][][][GC] ")
-    return (
-      <div>
-        <p>I'm Grand Children Component</p>
-      </div>
-    )
-  }
+function GrandChildren(props) {
+  console.log("[][][][GC] ")
+  return (
+    <div>
+      <p>I'm Grand Children Component</p>
+    </div>
+  )
 }
 
-export default GrandChildren
+export default React.memo(GrandChildren)
