@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react"
 import Form from "./Form"
 import List from "./List"
+import "./index.css"
+import Table from "./Table"
 
 function FetchApiProject() {
   const API_URL = "https://jsonplaceholder.typicode.com/"
@@ -16,7 +18,7 @@ function FetchApiProject() {
         // url + reqtype
         const response = await fetch(`${API_URL}${reqType}`)
         const data = await response.json()
-        console.log(data)
+        // console.log(data)
         setItems(data)
       } catch (error) {
         console.log(error)
@@ -29,7 +31,8 @@ function FetchApiProject() {
     <>
       <div>
         <Form reqType={reqType} setreqType={setreqType} />
-        <List items={items} />
+        {/* <List items={items} /> */}
+        <Table items={items} />
       </div>
     </>
   )
